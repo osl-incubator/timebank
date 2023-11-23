@@ -1,0 +1,13 @@
+version: 1.0
+compose-app: docker compose
+defaults:
+  group: default
+groups:
+  - name: default
+    project-name: timebank
+    compose-path: containers/compose.yaml
+    services:
+      default: algorand-node,timebank-web
+      available:
+        - name: algorand-node
+        - name: timebank-web

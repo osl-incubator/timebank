@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Members List{% endblock %}
+
+{% block content %}
+<h1 class="my-4">Members List</h1>
+<a href="/members/form" class="btn btn-primary mb-3">Add Member</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.id }}</td>
+            <td>{{ member.name }}</td>
+            <td>
+                <a href="{{ url_for('member_edit', id=member.id) }}" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

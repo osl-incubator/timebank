@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Transactions List{% endblock %}
+
+{% block content %}
+    <h1>Transactions List</h1>
+    <a href="{{ url_for('transaction_form') }}" class="btn btn-primary mb-3">Add Transaction</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sender ID</th>
+                <th>Receiver ID</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.sender_id }}</td>
+                <td>{{ transaction.receiver_id }}</td>
+                <td>{{ transaction.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  algorand-node:
+    hostname: algorand-node
+    image: algorand/stable:latest
+    environment:
+      ALGORAND_DATA: /data
+    volumes:
+      - ./data:/data
+    ports:
+      - "4001:4001"
+    command: ["./node/start.sh"]
+
+  timebank-web:
+    env_file:
+      - ../.env
+    build:
+      context: ..
+      dockerfile: containers/web/Dockerfile
+      args:
+        # note: if you want to use a specific UID and GID, ensure to add it to
+        #       the .env file
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 40s  # requires docker-compose 3.4
+    volumes:
+      - ../src/timebank-web:/opt/services/timebank
+    network_mode: host

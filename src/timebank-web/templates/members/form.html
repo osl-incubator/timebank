@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Members List{% endblock %}
+
+{% block content %}
+<h1>{{ 'Edit' if member else 'Add' }} Member</h1>
+<form action="{{ url_for('member_edit', id=member.id) if member else url_for('member_create') }}" method="post">
+    <div class="mb-3">
+        <label for="member-name" class="form-label">Member Name</label>
+        <input type="text" class="form-control" id="member-name" name="name" value="{{ member.name if member }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock content %}

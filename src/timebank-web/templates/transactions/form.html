@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Add/Edit Transaction{% endblock %}
+
+{% block content %}
+    <h1>Add Transaction</h1>
+    <form action="{{ url_for('transaction_create') }}" method="post">
+        <div class="mb-3">
+            <label for="sender-id" class="form-label">Sender ID</label>
+            <input type="number" class="form-control" id="sender-id" name="sender_id" value="{{ transaction.sender_id if transaction }}">
+        </div>
+        <div class="mb-3">
+            <label for="receiver-id" class="form-label">Receiver ID</label>
+            <input type="number" class="form-control" id="receiver-id" name="receiver_id" value="{{ transaction.receiver_id if transaction }}">
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" value="{{ transaction.amount if transaction }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
