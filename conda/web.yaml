@@ -7,4 +7,5 @@ dependencies:
   - pip
   - poetry
   - pre-commit
+  - shellcheck
   - sqlite

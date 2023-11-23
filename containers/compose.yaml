@@ -23,11 +23,10 @@ services:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
       interval: 20s
       timeout: 10s
       retries: 5
       start_period: 40s  # requires docker-compose 3.4
     volumes:
       - ../src/timebank-web:/opt/services/timebank
-    network_mode: host

@@ -48,17 +48,15 @@ USER tb
 ENV PATH /opt/conda/envs/$ENV_NAME/bin:$PATH
 ENV PYTHONPATH='/opt/services/timebank:/opt/services/'
 
-RUN mkdir -p /opt/services/
-COPY --chown=tb:tb src/timebank-web/ /opt/services/timebank
-COPY --chown=tb:tb containers/web/scripts /opt/services/timebank/scripts
-COPY --chown=tb:tb poetry.lock /opt/services/timebank/
-COPY --chown=tb:tb pyproject.toml /opt/services/timebank/
+RUN mkdir -p /opt/services/timebank
 COPY --chown=tb:tb conda/ /opt/services/timebank/conda
+COPY --chown=tb:tb src/timebank-web/pyproject.toml /opt/services/timebank/
+COPY --chown=tb:tb containers/web/scripts /opt/services/timebank/scripts
 
 WORKDIR /opt/services/timebank
 
 RUN mamba env create -n $ENV_NAME --file ./conda/web.yaml \
-  && poetry install --only web \
+  && poetry install --only main --no-root \
   && conda clean --all \
   && find /opt/conda/ -type f,l -name '*.pyc' -delete \
   && find /opt/conda/ -type f,l -name '*.js.map' -delete \
@@ -67,4 +65,4 @@ RUN mamba env create -n $ENV_NAME --file ./conda/web.yaml \
 RUN echo "source /opt/services/timebank/scripts/entrypoint.sh" > ~/.bashrc
 
 ENTRYPOINT ["tini", "--", "/opt/services/timebank/scripts/entrypoint.sh"]
-CMD ["./scripts/run.sh"]
+CMD ["./run.sh"]

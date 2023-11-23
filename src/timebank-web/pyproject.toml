@@ -21,4 +21,7 @@ flask-migrate = "^4.0.5"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.1.6"
-
+vulture = "^2.10"
+mccabe = "^0.7.0"
+mypy = "^1.7.0"
+containers-sugar = "^1.9.1"

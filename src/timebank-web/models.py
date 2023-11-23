@@ -6,7 +6,18 @@ db = SQLAlchemy()
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
-    transactions = db.relationship("Transaction", backref="member", lazy=True)
+    transactions = db.relationship(
+        "Transaction",
+        foreign_keys="Transaction.sender_id",
+        backref="sender",
+        lazy=True,
+    )
+    received_transactions = db.relationship(
+        "Transaction",
+        foreign_keys="Transaction.receiver_id",
+        backref="receiver",
+        lazy=True,
+    )
 
 
 class Transaction(db.Model):
