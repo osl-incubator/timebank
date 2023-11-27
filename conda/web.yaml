@@ -1,0 +1,11 @@
+name: timebank-web
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python >=3.8.1,<3.12
+  - pip
+  - poetry
+  - pre-commit
+  - shellcheck
+  - sqlite

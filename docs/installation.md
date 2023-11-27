@@ -1,0 +1,41 @@
+# Installation
+
+## Stable release
+
+To install TimeBank, run this command in your
+terminal:
+
+```bash
+$ pip install timebank
+```
+
+This is the preferred method to install TimeBank,
+as it will always install the most recent stable release.
+
+If you don't have [pip](https://pip.pypa.io) installed, this
+[Python installation guide](http://docs.python-guide.org/en/latest/starting/installation/)
+can guide you through the process.
+
+## From sources
+
+The sources for TimeBank can be downloaded from
+the [Github repo](https://github.com/osl-incubator/timebank).
+
+You can either clone the public repository:
+
+```bash
+$ git clone https://github.com/osl-incubator/timebank
+```
+
+Or download the
+[tarball](https://github.com/osl-incubator/timebank/tarball/main):
+
+```bash
+$ curl -OJL https://github.com/osl-incubator/timebank/tarball/main
+```
+
+Once you have a copy of the source, you can install it with:
+
+```bash
+$ poetry install
+```
